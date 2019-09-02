@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = () => (
   <header>
-      Application Header
+    Application Header
   </header>
 );
 

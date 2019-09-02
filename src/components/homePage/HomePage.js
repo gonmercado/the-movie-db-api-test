@@ -1,10 +1,11 @@
 import React from 'react';
-import './homePage.css';
+import './homePage.scss';
+import DiscoverMovies from "./discoverMovies/DiscoverMovies";
 
 const HomePage = () => (
-    <div>
-        Home Page
-    </div>
+  <div>
+    <DiscoverMovies />
+  </div>
 );
 
 export default HomePage;
