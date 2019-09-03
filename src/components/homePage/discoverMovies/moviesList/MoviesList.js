@@ -13,7 +13,7 @@ const MoviesList = ({ movies }) => {
       }
     </div>
   );
-}
+};
 
 MoviesList.propTypes = {
   movies: array.isRequired
