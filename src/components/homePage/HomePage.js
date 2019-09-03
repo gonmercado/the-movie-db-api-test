@@ -3,7 +3,7 @@ import './homePage.scss';
 import DiscoverMovies from "./discoverMovies/DiscoverMovies";
 
 const HomePage = () => (
-  <div>
+  <div className={ "home-page" }>
     <DiscoverMovies />
   </div>
 );

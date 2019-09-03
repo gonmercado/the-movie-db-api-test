@@ -4,9 +4,11 @@ import useApiConfigurationContext from "enhacers/useApiConfigurationContext";
 const sizes = [ 'small', 'medium', 'large'];
 
 const getImageSize = (apiSettings, type, size) => {
+  if (!type || !size) return 'original';
+
   const imageProp = apiSettings.images[`${ type }_sizes`];
   if (!imageProp ) throw `Error: "${ type }" Is not a valid type of image`;
-  if (!type || !size) return 'original';
+
   switch (size) {
     case sizes[0]: //small images, get first size in the array
       return imageProp[0];
@@ -19,19 +21,21 @@ const getImageSize = (apiSettings, type, size) => {
   }
 }
 
-const MovieDBImage = ({ src, alt, type, size }) => {
+const MovieDBImage = ({ src, alt, type, size, className }) => {
   const apiSettings = useApiConfigurationContext();
   return (
-    <img src={ `${ apiSettings.images.base_url }${ getImageSize(apiSettings, type, size) }/${ src }` } alt={ alt } />
+    src &&
+    <img className={ className } src={ `${ apiSettings.images.base_url }${ getImageSize(apiSettings, type, size) }/${ src }` } alt={ alt } />
   );
 };
 
 MovieDBImage.propTypes = {
-  src: string.isRequired,
+  src: string,
   alt: string,
   type: oneOf(['backdrop', 'logo', 'poster', 'profile', 'still']),
   //TODO: this could be calculted from the windows size that way big images, are only loaded on big devices. For now its an optional prop.
-  size: oneOf(sizes)
+  size: oneOf(sizes),
+  className: string
 };
 
 export default MovieDBImage;

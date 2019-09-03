@@ -8,7 +8,7 @@ const SearchMovies = ({ searchValue, onSearchValueChange }) => {
 
   return (
     <div>
-      <input value={ searchValue } onChange={ handleSearchCriteriaChange } />
+      <label htmlFor={ "search-movie" }>Search: </label><input name={ "search-movie" } autoFocus placeholder={ "movie information..."} value={ searchValue } onChange={ handleSearchCriteriaChange } />
     </div>
   );
 };

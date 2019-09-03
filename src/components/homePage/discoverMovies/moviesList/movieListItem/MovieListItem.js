@@ -1,18 +1,21 @@
 import React from 'react';
-import { shape, string } from 'prop-types';
+import { shape, string, func } from 'prop-types';
 import MovieDBImage from "shared/MovieDBImage";
 
-const MovieListItem = ({ movie }) => (
-  <div>
-    <p>{ movie.title }</p>
-    <MovieDBImage src={ movie.poster_path } alt={ movie.title } type={ 'poster' } size={ 'medium' } />
-  </div>
-);
+const MovieListItem = ({ movie, onMovieClick }) => {
+  const handleMovieClick = () => () => onMovieClick(movie.id);
+  return (
+    <div className={ "movie-list-item" } onClick={ handleMovieClick() }>
+      <MovieDBImage src={ movie.poster_path } alt={ movie.title } type={ 'poster' } size={ 'medium' } />
+    </div>
+  );
+}
 
 MovieListItem.propTypes = {
   movie: shape({
     title: string
-  }).isRequired
+  }).isRequired,
+  onMovieClick: func
 };
 
 export default React.memo(MovieListItem);

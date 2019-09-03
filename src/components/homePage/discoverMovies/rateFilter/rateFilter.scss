@@ -1,3 +1,10 @@
-.star {
-  cursor: pointer;
+.rate-filter {
+  display: flex;
+  padding: 20px 0;
+  p {
+    margin: 2px 0 5px 0;
+  }
+  .star {
+    cursor: pointer;
+  }
 }

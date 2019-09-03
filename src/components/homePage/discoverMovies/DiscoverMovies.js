@@ -3,11 +3,12 @@ import SearchMovies from "./searchMovies/SearchMovies";
 import MoviesList from "./moviesList/MoviesList";
 import useMovieFinder from "./useMovieFinder";
 import RateFilter from "components/homePage/discoverMovies/rateFilter/RateFilter";
+import Loader from "enhacers/Loader";
 
 const DiscoverMovies = () => {
   const [ searchValue, setSearchValue ] = useState('');
   const [ rateFilter, setRateFilter ] = useState(0);
-  const [ movies ] = useMovieFinder(searchValue, rateFilter);
+  const [ movies, fetching ] = useMovieFinder(searchValue, rateFilter);
 
   const handleSearchValueChange = () => value => setSearchValue(value);
 
@@ -18,7 +19,12 @@ const DiscoverMovies = () => {
     <div>
       <SearchMovies searchValue={ searchValue } onSearchValueChange={ handleSearchValueChange() } />
       <RateFilter onRateChange={ handleRateChange() } value={ rateFilter } />
-      { movies && <MoviesList movies={ movies } /> }
+      <Loader loading={ fetching } >
+        <div>
+          <h2>{ searchValue ? `Found movies for "${ searchValue}"...` : 'Suggested movies...' }</h2>
+          { movies && <MoviesList movies={ movies } /> }
+        </div>
+      </Loader>
     </div>
   );
 }

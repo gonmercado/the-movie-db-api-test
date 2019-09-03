@@ -1,0 +1,19 @@
+.movie-detail-page {
+  display: flex;
+  flex-direction: column;
+  padding: 10px calc((100vw - 1200px)/2);
+  &__backdrop {
+    width: 100%;
+    max-width: 1200px;
+  }
+  &__content {
+    padding: 0 30px;
+  }
+  &__overview-container {
+    display: flex;
+    justify-content: space-between;
+    p {
+      margin-right: 50px;
+    }
+  }
+}
