@@ -18,8 +18,13 @@ const useMovieDBApi = () => {
   };
 
   const get = async (url, config) => {
-    const response = await getAxiosInstance().get(url, config);
-    setData(response.data);
+    try {
+      const response = await getAxiosInstance().get(url, config);
+      setData(response.data);
+    }
+    catch (err) {
+      throw err;
+    }
   };
 
   return [ data, { get }]
