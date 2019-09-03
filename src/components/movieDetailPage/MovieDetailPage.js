@@ -5,16 +5,21 @@ import MovieDBImage from "shared/MovieDBImage";
 import './movieDetailPage.scss';
 import Loader from "enhacers/Loader";
 
-const MovieDetailPage = ({ match }) => {
+const MovieDetailPage = ({ match, history }) => {
   const [ movie, { get }, fetching] = useMovieDBApi();
   useEffect(() => {
     //TODO move the api key to the useMovieDBApi if there is time before demo
     get(`/movie/${ match.params.id }?api_key=c623137074e7a670ab06fe364ca23c59`);
   }, []);
 
+  const handleGoBackClick = () => () => {
+    history.push('/')
+  };
+
   return (
     <Loader loading={ fetching } >
       <div>
+        <button onClick={ handleGoBackClick() }>Go Back</button>
       {
         movie &&
         <section className={ 'movie-detail-page' }>
@@ -44,7 +49,8 @@ const MovieDetailPage = ({ match }) => {
 }
 
 MovieDetailPage.propTypes = {
-  match: object.isRequired
+  match: object.isRequired,
+  history: object.isRequired
 };
 
 export default MovieDetailPage;

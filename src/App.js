@@ -27,7 +27,7 @@ function App() {
                 <main className={'app__main-content'}>
                   <Switch>
                     <Route path="/" exact render={ () => <HomePage /> } />
-                    <Route path="/movie-detail/:id" render={ ({ match }) => <MovieDetailPage match={ match } /> } />
+                    <Route path="/movie-detail/:id" render={ ({ match, history }) => <MovieDetailPage match={ match } history={ history } /> } />
                     <Route render={ () => <NotFoundPage /> } />
                   </Switch>
                 </main>
